@@ -23,10 +23,13 @@ module Le
 
     opt_udp_port = options[:udp_port]                   || nil
 
+    opt_shift_age = options[:shift_age]                 || 0
+    opt_shift_size = options[:shift_size]               || 1048576
+
     self.checkParams(token, opt_datahub_enabled, opt_udp_port)
 
 
-    host = Le::Host.new(token, opt_local, opt_debug, opt_ssl, opt_datahub_endpoint, opt_host_id, opt_custom_host, opt_udp_port)
+    host = Le::Host.new(token, opt_local, opt_debug, opt_ssl, opt_datahub_endpoint, opt_host_id, opt_custom_host, opt_udp_port, opt_shift_age, opt_shift_size)
 
     if defined?(ActiveSupport::TaggedLogging) &&  opt_tag
       logger = ActiveSupport::TaggedLogging.new(Logger.new(host))
